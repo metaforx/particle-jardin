@@ -1,0 +1,13 @@
+{
+    "extensions.ignoreRecommendations": true,
+    "C_Cpp.default.configurationProvider": "particle.particle-vscode-core",
+    "files.associations": {
+        "*.ino": "cpp",
+        "__hash_table": "cpp",
+        "initializer_list": "cpp",
+        "unordered_map": "cpp",
+        "chrono": "cpp"
+    },
+    "particle.targetPlatform": "photon",
+    "particle.firmwareVersion": "3.3.1"
+}
