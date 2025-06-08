@@ -53,3 +53,5 @@ Thumbs.db
 *.su
 *.idb
 *.pdb
+
+src/secrets.h

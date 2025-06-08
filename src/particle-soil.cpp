@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include "secrets.h"
 
 SYSTEM_MODE(AUTOMATIC);
 SYSTEM_THREAD(ENABLED);
@@ -8,12 +9,13 @@ SerialLogHandler logHandler(LOG_LEVEL_INFO);
 const int AirValue = 3280;   
 const int WaterValue = 1640;  
 int soilMoistureValue = 0;
-const int measureHours[] = {14, 15, 16};
+const int measureHours[] = {7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23}; // Hours to measure soil moisture (24-hour format)
 const int TIMEZONE_OFFSET = 2;
 int hoursToNext = 24;
 
 void setup() {
   Serial.begin(9600);
+  WiFi.setCredentials(WIFI_SSID, WIFI_PASSWORD);
   Particle.variable("soilMoistureValue", &soilMoistureValue, INT);
 }
 
@@ -51,8 +53,8 @@ void loop() {
 
     // Publish the JSON string for the webhook
     Particle.publish("jardin-data", data, PRIVATE);
-
     delay(10000); // Allow time for publish
+
   } else {
     Serial.printf("Skipping measurement at hour: %d\n", currentHour);
   }
